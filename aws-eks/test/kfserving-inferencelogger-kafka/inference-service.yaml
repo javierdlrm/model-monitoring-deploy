@@ -6,7 +6,7 @@ spec:
   default:
     predictor:
       logger:
-        url: http://inference-adapter.default/
+        url: http://inference-logger.default/
         mode: all
       minReplicas: 1
       tensorflow:

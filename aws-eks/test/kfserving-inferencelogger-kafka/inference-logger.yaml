@@ -1,0 +1,21 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: inference-logger
+spec:
+  template:
+    spec:
+      containers:
+        - image: javierdlrm/inference-logger:v1beta1
+          imagePullPolicy: Always
+          env:
+            # required
+            - name: KAFKA_BROKERS
+              value: "172.31.0.12:9092,172.31.25.169:9092,172.31.39.254:9092"
+            # optional (just for visibility)
+            - name: KAFKA_TOPIC
+              value: "flowers-sample-inference-topic"
+            - name: KAFKA_TOPIC_PARTITIONS
+              value: "1"
+            - name: KAFKA_TOPIC_REPLICATION_FACTOR
+              value: "1"
