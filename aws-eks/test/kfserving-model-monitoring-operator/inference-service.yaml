@@ -6,7 +6,7 @@ spec:
   default:
     predictor:
       logger:
-        url: http://inference-logger.default/
+        url: http://flowers-model-monitor-inferencelogger.default/
         mode: all
       minReplicas: 1
       tensorflow:
