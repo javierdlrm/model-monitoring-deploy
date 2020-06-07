@@ -23,5 +23,6 @@ Simple tests to check if the services work as expected are included for cert-man
 Other integration tests available are:
 
 * KFServing with [inference-logger](https://github.com/javierdlrm/inference-logger) and Kafka
-* KFServing with the [model-monitoring operator](https://github.com/javierdlrm/model-monitoring-operator)
+* KFServing with [inference-logger](https://github.com/javierdlrm/inference-logger), Kafka and Spark job
+* KFServing with the [model-monitoring operator](https://github.com/javierdlrm/model-monitoring-operator) (everything managed)
 
