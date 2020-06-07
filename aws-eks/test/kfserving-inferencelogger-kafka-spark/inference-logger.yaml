@@ -16,6 +16,6 @@ spec:
             - name: KAFKA_TOPIC
               value: "flowers-sample-inference-topic"
             - name: KAFKA_TOPIC_PARTITIONS
-              value: "1"
+              value: "3"
             - name: KAFKA_TOPIC_REPLICATION_FACTOR
-              value: "1"
+              value: "3"

@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: spark-sa
+  namespace: flowers-ns
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: flowers-ns
+  name: spark-r
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["*"]
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: spark-rb
+  namespace: flowers-ns
+subjects:
+- kind: ServiceAccount
+  name: spark-sa
+  namespace: flowers-ns
+roleRef:
+  kind: Role
+  name: spark-r
+  apiGroup: rbac.authorization.k8s.io

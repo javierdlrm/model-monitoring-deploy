@@ -1,12 +1,13 @@
 apiVersion: "serving.kubeflow.org/v1alpha2"
-kind: "InferenceService"
+kind: InferenceService
 metadata:
-  name: "flowers-sample"
+  name: flowers-sample
+  namespace: flowers-ns
 spec:
   default:
     predictor:
       logger:
-        url: http://flowers-model-monitor-inferencelogger.default/
+        url: http://flowers-model-monitor-inferencelogger.flowers-ns/
         mode: all
       minReplicas: 1
       tensorflow:
