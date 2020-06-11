@@ -11,7 +11,7 @@ echo "Kubectl: Deleting namespaces for Kafka"
 kubectl delete -f kafka/kafka-namespaces.yaml
 
 echo "Helm: uninstalling kafka operator"
-helm install kafka strimzi/strimzi-kafka-operator -n kafka-operator
+helm delete kafka strimzi/strimzi-kafka-operator -n kafka-operator
 
 # # Delete the Strimzi cluster operator
 # kubectl delete strimzi-cluster-operator

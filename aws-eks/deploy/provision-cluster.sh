@@ -47,3 +47,9 @@
 #
 
 ./dashboard/provision.sh
+
+#
+# Descheduler
+#
+
+./descheduler/provision.sh

@@ -47,3 +47,9 @@
 #
 
 ./dashboard/clean-up.sh
+
+#
+# Descheduler
+#
+
+./descheduler/clean-up.sh
