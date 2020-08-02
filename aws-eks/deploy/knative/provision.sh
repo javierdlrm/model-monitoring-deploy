@@ -43,13 +43,13 @@ kubectl get deployment -n knative-eventing
 #
 
 echo "Kubectl: installing monitoring core"
-kubectl apply --filename https://github.com/knative/serving/releases/download/v0.14.0/monitoring-core.yaml
+kubectl apply -f knative/monitoring-core.yaml
 
 echo "Kubectl: installing Knative Monitoring"
-kubectl apply --filename https://github.com/knative/serving/releases/download/v0.14.0/monitoring-metrics-prometheus.yaml
+kubectl apply -f knative/monitoring-metrics-prometheus.yaml
 
 echo "Kubectl: installing Elasticsearch"
-kubectl apply --filename https://github.com/knative/serving/releases/download/v0.14.0/monitoring-logs-elasticsearch.yaml
+kubectl apply -f knative/monitoring-logs-elasticsearch.yaml
 # Manually: Navigate to the Kibana UI. It might take a couple of minutes for the proxy to work.
 # Within the “Configure an index pattern” page, enter logstash-* to Index pattern and select @timestamp from Time Filter field name and click on Create button.
 
@@ -60,10 +60,15 @@ kubectl apply -f knative/monitoring-tracing-jaeger.yaml
 
 # Grafana UI
 kubectl port-forward --namespace knative-monitoring \
-$(kubectl get pods --namespace knative-monitoring \
---selector=app=grafana --output=jsonpath="{.items..metadata.name}") \
-3000
+    $(kubectl get pods --namespace knative-monitoring \
+        --selector=app=grafana --output=jsonpath="{.items..metadata.name}") \
+    3000
 
 echo "Grafana: http://localhost:3000/"
 echo "Kibana: http://localhost:8001/api/v1/namespaces/knative-monitoring/services/kibana-logging/proxy/app/kibana"
 echo "Jager: http://localhost:8001/api/v1/namespaces/istio-system/services/jaeger-query:16686/proxy/search/"
+
+ kubectl get secret \
+    --namespace knative-monitoring grafana \
+    -o jsonpath="{.data.admin-password}" \
+    | base64 --decode ; echo
