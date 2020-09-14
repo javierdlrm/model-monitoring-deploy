@@ -11,13 +11,12 @@ echo "Kubectl: Deleting namespaces for Kafka"
 kubectl delete -f kafka/kafka-namespaces.yaml
 
 echo "Helm: uninstalling kafka operator"
-# helm delete kafka strimzi/strimzi-kafka-operator -n kafka-operator
+helm delete kafka strimzi/strimzi-kafka-operator -n kafka-operator
 
-# # Delete the Strimzi cluster operator
-# kubectl delete strimzi-cluster-operator
+# Delete the Strimzi cluster operator
+kubectl delete strimzi-cluster-operator
 
 # # Manually delete the persistent volumes
-# # Kafka
 # kubectl delete pvc data-kafka-cluster-kafka-0
 # kubectl delete pvc data-kafka-cluster-kafka-1
 

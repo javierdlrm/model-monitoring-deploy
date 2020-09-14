@@ -20,5 +20,7 @@ helm install \
   --version v0.15.0 \
   --set installCRDs=true
 
-echo "Kubectl: verify installation"
-kubectl get pods -n cert-manager
+sleep 15s
+
+# echo "Kubectl: verify installation"
+# kubectl get pods -n cert-manager

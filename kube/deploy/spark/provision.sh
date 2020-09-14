@@ -20,7 +20,7 @@ helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubato
 
 echo "Heml: installing spark operator"
 # helm install spark incubator/sparkoperator --namespace spark-operator --set sparkJobNamespace=spark-apps,logLevel=3,serviceAccounts.spark.name=spark
-helm install spark incubator/sparkoperator --namespace spark-operator --set logLevel=3,serviceAccounts.spark.name=spark
+helm install spark incubator/sparkoperator --namespace spark-operator --set logLevel=3,serviceAccounts.spark.name=spark # requires spark-rbac.yaml
 
-echo "Kubectl: Waiting unt  il spark is ready"
-# kubectl wait _ --for=condition=Ready --timeout=240s -n spark-operator
+echo "Kubectl: Waiting until spark is ready"
+kubectl wait _ --for=condition=Ready --timeout=240s -n spark-operator

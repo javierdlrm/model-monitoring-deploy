@@ -1,10 +1,15 @@
 #!/bin/sh
 
-eksctl get cluster
-CLUSTER_NAME=javier-eks-model-monitoring-cluster
+# Check cluster: eksctl get cluster
+
+if [ $# -ne 1 ]; then
+    echo "Parameters required: downscale-cluster.sh <cluster_name>"
+fi
+
+CLUSTER_NAME=$1
+NODEGROUP_NAME=standard-workers
 
 eksctl get nodegroup --cluster $CLUSTER_NAME
-NODEGROUP_NAME=standard-workers
 
 echo "Eksctl: drain nodes"
 eksctl drain nodegroup --cluster=$CLUSTER_NAME --name=$NODEGROUP_NAME

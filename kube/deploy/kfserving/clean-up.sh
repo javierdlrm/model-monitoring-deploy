@@ -7,4 +7,4 @@
 echo "Kubectl: Deleting kfserving"
 kubectl delete -f kfserving/kfserving.yaml
 
-sleep 10s
+sleep 6s
