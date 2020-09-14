@@ -4,11 +4,8 @@
 # Istio
 #
 
-echo "Kubectl: deleting cluster local gateway"
-kubectl delete -f istio/istio-local-gateway.yaml
+echo "Kubectl: deleting Istio system"
+kubectl delete ns istio-system
 
-echo "Kubectl: deleting Istio from template"
-kubectl delete -f istio/istio.yaml
-
-echo "Kubectl: deleting namespace for Istio"
-kubectl delete -f istio/istio-namespaces.yaml
+echo "Kubectl: deleting Istio operator"
+kubectl delete ns istio-operator

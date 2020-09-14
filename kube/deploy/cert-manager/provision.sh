@@ -3,24 +3,21 @@
 #
 # Cert-manager
 #
+# version: 1.0.1
 
-echo "Kubectl: create namespace for Cert-Manager"
-kubectl apply -f cert-manager/cert-manager-namespaces.yaml
+# Create namespace
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cert-manager
+  labels:
+    name: cert-manager
+EOF
 
-echo "Helm: add jetstack repo"
-helm repo add jetstack https://charts.jetstack.io
-
-echo "Helm: update repos"
-helm repo update
-
-echo "Helm: installing cert-manager"
+echo "Kubectl: installing cert-manager"
 helm install \
   cert-manager jetstack/cert-manager \
   --namespace cert-manager \
-  --version v0.15.0 \
+  --version v1.0.1 \
   --set installCRDs=true
-
-sleep 15s
-
-# echo "Kubectl: verify installation"
-# kubectl get pods -n cert-manager

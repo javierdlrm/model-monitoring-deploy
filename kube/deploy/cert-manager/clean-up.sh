@@ -10,4 +10,4 @@ helm uninstall \
   --namespace cert-manager
 
 echo "Kubectl: create namespace for Cert-Manager"
-kubectl delete -f cert-manager/cert-manager-namespaces.yaml
+kubectl delete ns cert-manager
