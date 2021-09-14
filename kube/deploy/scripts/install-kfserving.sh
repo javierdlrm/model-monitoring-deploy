@@ -3,7 +3,7 @@
 # Install KFServing and required tools
 
 # VERSIONS:
-# Helm -> 3
+# Helm -> 3.3.1 // 3.3.2 contains a bug preventing cert-manager from being installed
 # Knative -> 0.17 // latests
 # Istio -> 1.7.1 // <1.6 requires Helm 2 // >1.5.2 required by Knative
 # Cert-manager -> 1.0.1 // latest
@@ -17,7 +17,7 @@
 # Optional args:
 # -v | --version: define specific version
 # --no-sudo: install without sudo
-curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash -s -- --version v3.3.1
 
 # Update Helm repos
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
@@ -142,6 +142,12 @@ helm install \
   --namespace cert-manager \
   --version v1.0.1 \
   --set installCRDs=true
+
+
+helm template \
+  jetstack/cert-manager \
+  --namespace cert-manager \
+  --version v1.0.1 > cert-manager-webhook.yaml
 
 #
 # KFServing
